@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger: " + other.tag);
         if (other.tag == "Player")
         {
             follow = true;
@@ -48,7 +47,6 @@ public class EnemyController : MonoBehaviour
             var t = player.transform.position.x - transform.position.x;
             s = Mathf.SmoothDamp(t + Mathf.Sign(t) * 2, 0, ref s, 1, speed * Time.fixedDeltaTime);
 
-            Debug.Log("move: " + s);
             controller2D.Move(s * Time.fixedDeltaTime, false, false);
         }
     }

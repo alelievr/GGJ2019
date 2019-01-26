@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Fire()
     {
+        if (!canFire)
+            return ;
         Vector2 force = bulletForce;
         if (!controller2D.m_FacingRight)
             force.x = -force.x;
@@ -44,6 +46,14 @@ public class PlayerMovement : MonoBehaviour
         var g = GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
         var r = g.GetComponent< Rigidbody2D >();
         r.AddForce(force + Vector2.right * playerR.velocity.x, ForceMode2D.Impulse);
+        StartCoroutine(FireTimeout());
+    }
+
+    IEnumerator FireTimeout()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(fireTimeout);
+        canFire = true;
     }
 
     private void FixedUpdate()

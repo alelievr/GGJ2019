@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.isTrigger)
+            return ;
         if (other.tag == "Enemy")
         {
             enemies.Add(other.gameObject);
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour
 
         foreach (var e in enemies)
         {
+            if (e == null)
+                continue;
             score += 1.0f - (Vector3.Distance(e.transform.position, transform.position) / enemyCollider.radius);
         }
 

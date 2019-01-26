@@ -17,6 +17,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "Bullet")
+            return ;
+
         r.enabled = false;
         c.enabled = false;
         var e = particle.emission;

@@ -27,9 +27,7 @@ public class FlyingEnemyHeightController : MonoBehaviour
             float currentY = transform.position.y;
 
             v = Mathf.SmoothDamp(targetY - currentY, 0, ref v, smoothTime, speed);
-            Debug.Log("targetY: " + targetY);
 
-            Debug.Log(speed);
             r.gravityScale = Mathf.Clamp(-v, -speed, speed);
         }
     }
