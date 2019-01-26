@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float            fireTimeout = 0.5f;
     public GameObject       bullet;
     public Vector2          bulletForce = new Vector2(1, 1);
+    public Animator         animator;
 
     CharacterController2D   controller2D;
     Rigidbody2D             playerR;
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Fire();
         }
+        animator.SetFloat("speed", Mathf.Abs(playerR.velocity.x));
+        animator.SetBool("inAir", !controller2D.m_Grounded);
     }
 
     void Fire()
