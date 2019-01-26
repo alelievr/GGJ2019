@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         var g = GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
         var r = g.GetComponent< Rigidbody2D >();
-        r.AddForce(force + playerR.velocity, ForceMode2D.Impulse);
+        r.AddForce(force + Vector2.right * playerR.velocity.x, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
