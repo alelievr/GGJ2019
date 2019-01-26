@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2          bulletForce = new Vector2(1, 1);
 
     CharacterController2D   controller2D;
+    Rigidbody2D             playerR;
     bool                    jump;
     float                   move;
     bool                    canFire = true;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller2D = GetComponent< CharacterController2D >();
+        playerR = GetComponent< Rigidbody2D >();
     }
 
     private void Update()
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         var g = GameObject.Instantiate(bullet, transform.position, Quaternion.identity);
         var r = g.GetComponent< Rigidbody2D >();
-        r.AddForce(force, ForceMode2D.Impulse);
+        r.AddForce(force + playerR.velocity, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
