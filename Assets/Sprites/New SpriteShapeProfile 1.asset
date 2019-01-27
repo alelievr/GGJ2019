@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
-  m_Name: New SpriteShapeProfile
+  m_Name: New SpriteShapeProfile 1
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -48
-    m_End: 312
+  - m_Start: -142
+    m_End: 218
     m_Order: 0
     m_Sprites:
     - {fileID: 21300000, guid: 272d855dfc2344357b6f526d0e7c2a71, type: 3}
@@ -47,6 +47,6 @@ MonoBehaviour:
   m_FillPixelPerUnit: 100
   m_BevelSize: 0
   m_BevelCutoff: 0
-  m_FillOffset: 0
+  m_FillOffset: -0.149
   m_WorldSpaceUV: 0
   m_UseSpriteBorders: 1
