@@ -9,27 +9,33 @@ public class MovePlayerToEnd : MonoBehaviour
     public CharacterController2D    playerController;
     public bool                     moveToEnd;
 
+    [Header("Music !")]
+    public Transform                backgrounMusic;
+
     void Start()
     {
         player = FindObjectOfType< PlayerMovement >();
         playerController = player.GetComponent< CharacterController2D >();
     }
 
-    float speed = 1;
-    float maxSpeed = 2;
-    float smoothTime = 0.5f;
+    public float speed = 3;
+    public float maxSpeed = 20;
+    public float smoothTime = 0.3f;
     float s;
     void Update()
     {
         if (moveToEnd)
         {
-            player.enabled = false;
+            player.lockKeyboard = true;
 
             var t = player.transform.position.x - target.transform.position.x;
             s = Mathf.SmoothDamp(t, 0, ref s, smoothTime);
 
-            s = Mathf.Clamp(s * speed, -maxSpeed, maxSpeed);
+            Debug.Log("Move player to end: " + s);
+            s = Mathf.Clamp(-s * speed, -maxSpeed, maxSpeed);
             playerController.Move(s * speed * Time.fixedDeltaTime, false, false);
+
+            backgrounMusic.position = Vector3.MoveTowards(backgrounMusic.position, target.position, 80 * Time.deltaTime);
         }
     }
 }

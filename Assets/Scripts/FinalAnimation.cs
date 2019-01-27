@@ -55,8 +55,12 @@ public class FinalAnimation : MonoBehaviour
     }
 
     float pssStartValue;
-    void FinalAnim()
+    public void FinalAnim()
     {
+        foreach (var e in GameObject.FindObjectsOfType< EnemyController >())
+        {
+            Destroy(e.gameObject);
+        }
         playerVcam.SetActive(false);
         movePlayerToEnd.moveToEnd = true;
         pps.enabled = false;

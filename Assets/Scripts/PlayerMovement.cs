@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     bool                    jump;
     float                   move;
     bool                    canFire = true;
+    public bool lockKeyboard = false;
 
 
     void Start()
@@ -27,14 +28,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        move = Input.GetAxis("Horizontal") * runSpeed;
-
-        if (Input.GetButtonDown("Jump"))
-            jump = true;
-
-        if (Input.GetButtonDown("Fire1"))
+        if (lockKeyboard)
         {
-            Fire();
+            move = 0;
+        }
+        else
+        {
+            move = Input.GetAxis("Horizontal") * runSpeed;
+
+            if (Input.GetButtonDown("Jump"))
+                jump = true;
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Fire();
+            }
         }
 
         if (oldGrounded != controller2D.m_Grounded && !controller2D.m_Grounded)
