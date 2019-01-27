@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float        speed = 20;
+    public float        smoothTime = 0.5f;
     public GameObject   diePrefab;
 
     public GameObject   player;
@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
         if (follow)
         {
             var t = player.transform.position.x - transform.position.x;
-            s = Mathf.SmoothDamp(t + Mathf.Sign(t) * 2, 0, ref s, 1, speed * Time.fixedDeltaTime);
+            s = Mathf.SmoothDamp(t, 0, ref s, smoothTime);
 
             controller2D.Move(s * Time.fixedDeltaTime, false, false);
         }
