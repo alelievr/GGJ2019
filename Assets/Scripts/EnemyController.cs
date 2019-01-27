@@ -38,6 +38,9 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        if (isDead)
+            return ;
+
         isDead = true;
         e.enabled = false;
         var g = GameObject.Instantiate(diePrefab, transform.position, Quaternion.identity);

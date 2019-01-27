@@ -20,7 +20,7 @@ public class MyPostProcessManger : MonoBehaviour
 
     void Update()
     {
-        m_Vignette.intensity.value = player.score01 * 2 - 1.2f; // don't vignete under 50%
-        grading.brightness.value = Mathf.Clamp01(player.score01 * 2 - 1.5f);
+        m_Vignette.intensity.value = player.score01;
+        grading.brightness.value = Mathf.Clamp01(player.score01 * 2 - 1.3f);
     }
 }

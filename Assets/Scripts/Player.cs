@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 
         foreach (var e in enemies)
         {
+            Debug.Log("enemy: " + e);
             if (e == null || e.isDead)
                 continue;
             score += 1.0f - (Vector3.Distance(e.transform.position, transform.position) / enemyCollider.radius);

@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: cba3aefd46b97485b9ab0c3063319077
+guid: 72783b2c1c91044a6834cab2456dc894
 TextureImporter:
   fileIDToRecycleName:
-    21300000: flowers_0
-    21300002: flowers_1
-    21300004: flowers_2
-    21300006: flowers_3
+    21300000: scaryFace_0
+    21300002: scaryFace_1
+    21300004: scaryFace_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -110,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flowers_0
+      name: scaryFace_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 134
-        width: 104
-        height: 147
+        x: 100
+        y: 162
+        width: 281
+        height: 278
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +123,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29e74da21630d4edba0c26e798adc8d4
+      spriteID: 28298d67fc19646c9a733b672a5d8369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flowers_1
+      name: scaryFace_1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 137
-        width: 60
-        height: 128
+        x: 420
+        y: 126
+        width: 36
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,19 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 611a3b81fae79414daa7db2c2d9f1e72
+      spriteID: 387037122ee5542a7a18e3cb333569a7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flowers_2
+      name: scaryFace_2
       rect:
         serializedVersion: 2
-        x: 275
-        y: 145
-        width: 67
-        height: 125
+        x: 78
+        y: 51
+        width: 335
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,27 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2580ad9dca14c45d0aeab6994b39ca72
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flowers_3
-      rect:
-        serializedVersion: 2
-        x: 353
-        y: 140
-        width: 142
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8d4d3a42c6bc64694bf9e7268af5507e
+      spriteID: 80dd9e472bade4605bcbb50299668fc4
       vertices: []
       indices: 
       edges: []
@@ -192,7 +171,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f984ac05ec75b455880ef0bd742e903a
+    spriteID: 6cb5ad94826594b3bb967355430fbe8d
     vertices: []
     indices: 
     edges: []
