@@ -1,14 +1,14 @@
-﻿Shader "Custom/GroundShader"
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Custom/SkyShader"
 {
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
-        _Color0 ("Tint at 0", Color) = (1,1,1,1)
-        _Color1 ("Tint at 100", Color) = (1,1,1,1)
-        _Color2 ("Tint at 200", Color) = (1,1,1,1)
-        _Color3 ("Tint at 300", Color) = (1,1,1,1)
-        _Color4 ("Tint at 400", Color) = (1,1,1,1)
-        _Color5 ("Tint at 500", Color) = (1,1,1,1)
+        _Gradient ("Tint at 0", 2D) = "white" {}
+        _Alpha ("Alpha", Float) = 1
+        _Distance ("Distance", Float) = 500
+        _Start ("Start", Float) = 0
         [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
         [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
@@ -20,7 +20,7 @@
     {
         Tags
         {
-            "Queue"="Transparent+1"
+            "Queue"="Transparent"
             "IgnoreProjector"="True"
             "RenderType"="Transparent"
             "PreviewType"="Plane"
@@ -73,6 +73,9 @@ fixed4 _Color2;
 fixed4 _Color3;
 fixed4 _Color4;
 fixed4 _Color5;
+float _Alpha;
+float _Distance;
+float _Start;
 
 struct appdata_t
 {
@@ -85,10 +88,9 @@ struct appdata_t
 struct v2f
 {
     float4 vertex   : SV_POSITION;
-    float4 world : TEXCOORD1;
+    float4 world   : TEXCOORD1;
     fixed4 color    : COLOR;
     float2 texcoord : TEXCOORD0;
-    float d : DEPTH;
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -107,7 +109,7 @@ v2f SpriteVert(appdata_t IN)
     OUT.vertex = UnityFlipSprite(IN.vertex, _Flip);
     OUT.vertex = UnityObjectToClipPos(OUT.vertex);
     OUT.texcoord = IN.texcoord;
-    OUT.world = IN.vertex;
+    OUT.world = mul(unity_ObjectToWorld, IN.vertex);
     OUT.color = IN.color * _Color0 * _RendererColor;
 
     #ifdef PIXELSNAP_ON
@@ -118,6 +120,7 @@ v2f SpriteVert(appdata_t IN)
 }
 
 sampler2D _MainTex;
+sampler2D _Gradient;
 sampler2D _AlphaTex;
 
 fixed4 SampleSpriteTexture (float2 uv)
@@ -134,23 +137,14 @@ fixed4 SampleSpriteTexture (float2 uv)
 
 float4 GetPositionColor(float p)
 {
-    if (p < 100)
-        return _Color0;
-    else if (p < 200)
-        return _Color1;
-    else if (p < 300)
-        return _Color2;
-    else if (p < 400)
-        return _Color3;
-    else if (p < 500)
-        return _Color4;
-    else
-        return _Color5;
+    p += _Start;
+    float3 rgb = tex2D(_Gradient, float2(p / _Distance, 0.5));
+    return float4(rgb, 1);
 }
 
 fixed4 SpriteFrag(v2f IN) : SV_Target
 {
-    fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color * GetPositionColor(IN.world.x);
+    fixed4 c = SampleSpriteTexture (IN.texcoord) * GetPositionColor(IN.world.x) * _Alpha;
     c.rgb *= c.a;
     return c;
 }

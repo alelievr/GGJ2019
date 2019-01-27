@@ -4692,7 +4692,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_VertexStreams: 000304
+  m_VertexStreams: 0003040508
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -4712,6 +4712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   smoothTime: 2
+  ps: {fileID: 1608516460}
 --- !u!1001 &7113866903367258134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4719,11 +4720,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 524907942221695569, guid: 32fdcee9354174c869d16bc1c9b0291c,
-        type: 3}
-      propertyPath: m_Name
-      value: FlyingEnemy
-      objectReference: {fileID: 0}
     - target: {fileID: 6976658071076959666, guid: 32fdcee9354174c869d16bc1c9b0291c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4779,6 +4775,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 524907942221695569, guid: 32fdcee9354174c869d16bc1c9b0291c,
+        type: 3}
+      propertyPath: m_Name
+      value: FlyingEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1008453221057671664, guid: 32fdcee9354174c869d16bc1c9b0291c,
         type: 3}
       propertyPath: m_AirControl
@@ -4797,7 +4798,7 @@ PrefabInstance:
     - target: {fileID: 7540449096741742615, guid: 32fdcee9354174c869d16bc1c9b0291c,
         type: 3}
       propertyPath: m_VertexStreams.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7540449096741742615, guid: 32fdcee9354174c869d16bc1c9b0291c,
         type: 3}
@@ -4813,6 +4814,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VertexStreams.Array.data[2]
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540449096741742615, guid: 32fdcee9354174c869d16bc1c9b0291c,
+        type: 3}
+      propertyPath: m_VertexStreams.Array.data[3]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540449096741742615, guid: 32fdcee9354174c869d16bc1c9b0291c,
+        type: 3}
+      propertyPath: m_VertexStreams.Array.data[4]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 448553502560414061, guid: 32fdcee9354174c869d16bc1c9b0291c,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32fdcee9354174c869d16bc1c9b0291c, type: 3}

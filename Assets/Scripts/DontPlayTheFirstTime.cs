@@ -14,14 +14,20 @@ public class DontPlayTheFirstTime : MonoBehaviour
     {
         if (active)
             return ;
-        active = true;
         Debug.Log("Start unique !");
         DontDestroyOnLoad(gameObject);
         target.enabled = false;
+        active = true;
+    }
+    private void Start()
+    {
         SceneManager.sceneLoaded += (e, s) => {
-            GameObject g = GameObject.Find("TitleScreenVcam");
-            if (g != null)
-                g.SetActive(false);
+            if (active)
+            {
+                GameObject g = GameObject.Find("TitleScreenVcam");
+                if (g != null)
+                    g.SetActive(false);
+            }
         };
     }
 }

@@ -10,11 +10,14 @@ public class EnemyController : MonoBehaviour
     public GameObject   player;
     public bool         follow = false;
     CharacterController2D   controller2D;
+    ParticleSystem.EmissionModule e;
+    public bool         isDead = false;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         controller2D = GetComponent< CharacterController2D >();
+        e = GetComponent< ParticleSystem >().emission;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,8 +38,11 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
-        GameObject.Instantiate(diePrefab, transform.position, Quaternion.identity);
-        GameObject.Destroy(gameObject);
+        isDead = true;
+        e.enabled = false;
+        var g = GameObject.Instantiate(diePrefab, transform.position, Quaternion.identity);
+        GameObject.Destroy(gameObject, 5);
+        GameObject.Destroy(g, 5);
     }
 
     float s;

@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float        score01;
 
     CircleCollider2D    enemyCollider;
-    List< GameObject >  enemies = new List< GameObject >();
+    List< EnemyController >  enemies = new List< EnemyController >();
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
             return ;
         if (other.tag == "Enemy")
         {
-            enemies.Add(other.gameObject);
+            enemies.Add(other.gameObject.GetComponent< EnemyController >());
         }
     }
 
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            enemies.Remove(other.gameObject);
+            enemies.Remove(other.gameObject.GetComponent<EnemyController >());
         }
     }
 
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
         foreach (var e in enemies)
         {
-            if (e == null)
+            if (e == null || e.isDead)
                 continue;
             score += 1.0f - (Vector3.Distance(e.transform.position, transform.position) / enemyCollider.radius);
         }

@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         playerR = GetComponent< Rigidbody2D >();
     }
 
+    bool oldGrounded = false;
+
     private void Update()
     {
         move = Input.GetAxis("Horizontal") * runSpeed;
@@ -34,8 +36,23 @@ public class PlayerMovement : MonoBehaviour
         {
             Fire();
         }
+
+        if (oldGrounded != controller2D.m_Grounded && !controller2D.m_Grounded)
+        {
+            StartCoroutine(SetInAir());
+        }
+
+        oldGrounded = controller2D.m_Grounded;
         animator.SetFloat("speed", Mathf.Abs(playerR.velocity.x));
-        animator.SetBool("inAir", !controller2D.m_Grounded);
+        if (controller2D.m_Grounded)
+            animator.SetBool("inAir", false);
+    }
+
+    IEnumerator SetInAir()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (!controller2D.m_Grounded)
+            animator.SetBool("inAir", true);
     }
 
     void Fire()

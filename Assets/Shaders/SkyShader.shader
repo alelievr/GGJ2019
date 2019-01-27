@@ -5,6 +5,8 @@
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Gradient ("Tint at 0", 2D) = "white" {}
         _Alpha ("Alpha", Float) = 1
+        _Distance ("Distance", Float) = 500
+        _Start ("Start", Float) = 0
         [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
         [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
@@ -70,6 +72,8 @@ fixed4 _Color3;
 fixed4 _Color4;
 fixed4 _Color5;
 float _Alpha;
+float _Distance;
+float _Start;
 
 struct appdata_t
 {
@@ -131,8 +135,8 @@ fixed4 SampleSpriteTexture (float2 uv)
 
 float4 GetPositionColor(float p)
 {
-    p += 100;
-    float3 rgb = tex2D(_Gradient, float2(p / 200, 0.5));
+    p += _Start;
+    float3 rgb = tex2D(_Gradient, float2(p / _Distance, 0.5));
     return float4(rgb, 1);
 }
 

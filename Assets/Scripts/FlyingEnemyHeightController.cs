@@ -6,9 +6,11 @@ public class FlyingEnemyHeightController : MonoBehaviour
 {
     public float    speed = 0.5f;
     public float    smoothTime = 1;
+    public ParticleSystem   ps;
 
     Rigidbody2D r;
     EnemyController e;
+    ParticleSystem.EmissionModule   em;
 
     float   v;
 
@@ -16,11 +18,18 @@ public class FlyingEnemyHeightController : MonoBehaviour
     {
         r = GetComponent< Rigidbody2D >();
         e = GetComponent< EnemyController >();
+        em = ps.emission;
         v = 0;
     }
 
     void Update()
     {
+        if (e.isDead)
+        {
+            em.enabled = false;
+            return ;
+        }
+
         if (e.follow)
         {
             float targetY = e.player.transform.position.y + 2;
