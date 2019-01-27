@@ -15,8 +15,11 @@ public class rotateXToPlayer : MonoBehaviour
     {
         if (e.follow)
         {
-            Debug.Log("dfsf");
-            transform.right = ((Vector3)((Vector2)e.player.transform.position -(Vector2)transform.position)).normalized;
+            Vector3 diff = e.player.transform.position;
+            diff.Normalize();
+    
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z +  180);
         }
     }
 }
