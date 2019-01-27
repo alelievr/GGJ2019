@@ -12,6 +12,7 @@ public class PostProcessSlider : MonoBehaviour
 
     public Transform        start;
     public Transform        end;
+    public float            currentGama;
 
     GameObject player;
 
@@ -27,5 +28,11 @@ public class PostProcessSlider : MonoBehaviour
         float s = player.transform.position.x - start.position.x;
 
         grading.gamma.value.w = Mathf.Lerp(startGamma, endGamma, s / (end.position.x - start.position.x));
+        currentGama = grading.gamma.value.w;
+    }
+
+    public void SetGamma(float f)
+    {
+        grading.gamma.value.w = f;
     }
 }
