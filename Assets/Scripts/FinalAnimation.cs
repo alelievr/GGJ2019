@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Cinemachine;
 
 public class FinalAnimation : MonoBehaviour
 {
     public PlayableDirector     playable;
     public Material             skyMaterial;
     public Material             groundMaterial;
+    public MovePlayerToEnd          movePlayerToEnd;
+    public GameObject           playerVcam;
 
     public bool                 trigger = false;
 
@@ -25,6 +28,7 @@ public class FinalAnimation : MonoBehaviour
     private void Start()
     {
         pps = GameObject.FindObjectOfType<PostProcessSlider>();
+        movePlayerToEnd = FindObjectOfType< MovePlayerToEnd >();
         skyMaterial.SetFloat("_FinalAnim", 0);
         groundMaterial.SetFloat("_FinalAnim", 0);
     }
@@ -53,6 +57,8 @@ public class FinalAnimation : MonoBehaviour
     float pssStartValue;
     void FinalAnim()
     {
+        playerVcam.SetActive(false);
+        movePlayerToEnd.moveToEnd = true;
         pps.enabled = false;
         pssStartValue = pps.currentGama;
         playable.Play();
