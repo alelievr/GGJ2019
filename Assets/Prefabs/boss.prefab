@@ -10300,9 +10300,9 @@ MonoBehaviour:
   gameObject: {fileID: 7345741252538325575, guid: 4ebe6b23da1f1444bb81abe617fbfdfe,
     type: 3}
   parent: {fileID: 0}
-  cd: 2
+  cd: 6
   decalage: 0
-  randomFrom0: 2
+  randomFrom0: 6
   onlyIfLastDie: 0
 --- !u!50 &1011479386
 Rigidbody2D:
@@ -10470,9 +10470,9 @@ MonoBehaviour:
   gameObject: {fileID: 7345741252538325575, guid: 4ebe6b23da1f1444bb81abe617fbfdfe,
     type: 3}
   parent: {fileID: 0}
-  cd: 2
+  cd: 6
   decalage: 0
-  randomFrom0: 2
+  randomFrom0: 6
   onlyIfLastDie: 0
 --- !u!95 &1844347167
 Animator:
@@ -10508,9 +10508,9 @@ MonoBehaviour:
   gameObject: {fileID: 7345741252538325575, guid: 4ebe6b23da1f1444bb81abe617fbfdfe,
     type: 3}
   parent: {fileID: 0}
-  cd: 2
+  cd: 6
   decalage: 0
-  randomFrom0: 2
+  randomFrom0: 6
   onlyIfLastDie: 0
 --- !u!50 &1690160849
 Rigidbody2D:
@@ -10612,9 +10612,9 @@ MonoBehaviour:
   gameObject: {fileID: 7345741252538325575, guid: 4ebe6b23da1f1444bb81abe617fbfdfe,
     type: 3}
   parent: {fileID: 0}
-  cd: 2
+  cd: 6
   decalage: 0
-  randomFrom0: 2
+  randomFrom0: 6
   onlyIfLastDie: 0
 --- !u!50 &810406295
 Rigidbody2D:
