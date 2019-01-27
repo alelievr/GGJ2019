@@ -34,19 +34,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    float velo;
     void Update()
     {
         float score = 0;
 
         foreach (var e in enemies)
         {
-            Debug.Log("enemy: " + e);
             if (e == null || e.isDead)
                 continue;
             score += 1.0f - (Vector3.Distance(e.transform.position, transform.position) / enemyCollider.radius);
         }
 
-        score01 = score / restartScore;
+        score01 = Mathf.SmoothDamp(score01, score / restartScore, ref velo, .4f);
 
         if (score >= restartScore)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

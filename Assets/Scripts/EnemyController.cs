@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum EnemyMode
+{
+    Grounder,
+    Jumper,
+};
+
 public class EnemyController : MonoBehaviour
 {
     public float        smoothTime = 0.5f;
@@ -10,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public float        speed = 2;
     public float        maxSpeed = 5;
 
+    Rigidbody2D         rb;
     public GameObject   player;
     public bool         follow = false;
     CharacterController2D   controller2D;
@@ -21,8 +28,16 @@ public class EnemyController : MonoBehaviour
     public UnityEvent onDie;
     public UnityEvent onFollow;
 
+    [Header("Jump enemy")]
+    public Vector3      jumpForce = new Vector3(1, 3, 0);
+    public float        jumpTimeout = 0.4f;
+    bool                canJump = true;
+
+    public EnemyMode    mode = EnemyMode.Grounder;
+
     void Start()
     {
+        rb = GetComponent< Rigidbody2D >();
         player = GameObject.FindGameObjectWithTag("Player");
         controller2D = GetComponent< CharacterController2D >();
         e = GetComponent< ParticleSystem >().emission;
@@ -61,6 +76,21 @@ public class EnemyController : MonoBehaviour
     float s;
     private void FixedUpdate()
     {
+        switch (mode)
+        {
+            case EnemyMode.Grounder:
+                FixedUpdateGrounder();
+                break ;
+            case EnemyMode.Jumper:
+                FixedUpdateJumper();
+                break ;
+            default:
+                break;
+        }
+    }
+
+    void FixedUpdateGrounder()
+    {
         if (follow)
         {
             var t = player.transform.position.x - transform.position.x;
@@ -71,5 +101,28 @@ public class EnemyController : MonoBehaviour
         }
         if (dontFollow)
             controller2D.Move(0, false, false);
+    }
+
+    void FixedUpdateJumper()
+    {
+        if (controller2D.m_Grounded && canJump)
+            rb.velocity = Vector2.zero;
+
+        if (follow && controller2D.m_Grounded && canJump)
+        {
+            var direction = Mathf.Sign(player.transform.position.x - transform.position.x);
+            var jump = jumpForce;
+            jump.x *= direction;
+            rb.AddForce(jump, ForceMode2D.Impulse);
+            Debug.Log("jump !");
+            StartCoroutine(JumpTimeout());
+        }
+    }
+
+    IEnumerator JumpTimeout()
+    {
+        canJump = false;
+        yield return new WaitForSeconds(jumpTimeout);
+        canJump = true;
     }
 }
