@@ -5432,7 +5432,7 @@ MonoBehaviour:
   player: {fileID: 0}
   follow: 0
   isDead: 0
-  life: 8
+  life: 5
   dontFollow: 1
   onDie:
     m_PersistentCalls:
