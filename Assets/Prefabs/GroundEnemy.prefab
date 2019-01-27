@@ -85,11 +85,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b566c2a67e5a474cb72926aa46281d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  smoothTime: 0.5
   diePrefab: {fileID: 2308123592096845847, guid: c92e30c33d6724b949e85c364fe2f730,
     type: 3}
+  speed: 2.4
+  maxSpeed: 5
   player: {fileID: 0}
   follow: 0
+  isDead: 0
 --- !u!58 &9121180675347046417
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4799,11 +4802,11 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 0003040508
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}

@@ -6,6 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     public float        smoothTime = 0.5f;
     public GameObject   diePrefab;
+    public float        speed = 2;
+    public float        maxSpeed = 5;
 
     public GameObject   player;
     public bool         follow = false;
@@ -56,7 +58,8 @@ public class EnemyController : MonoBehaviour
             var t = player.transform.position.x - transform.position.x;
             s = Mathf.SmoothDamp(t, 0, ref s, smoothTime);
 
-            controller2D.Move(s * Time.fixedDeltaTime, false, false);
+            s = Mathf.Clamp(s * speed, -maxSpeed, maxSpeed);
+            controller2D.Move(s * speed * Time.fixedDeltaTime, false, false);
         }
     }
 }
