@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class EnemyController : MonoBehaviour
     CharacterController2D   controller2D;
     ParticleSystem.EmissionModule e;
     public bool         isDead = false;
+    public int life = 1;
+    public bool dontFollow = false;
+    [Header("Events")]
+    public UnityEvent onDie;
+    public UnityEvent onFollow;
 
     void Start()
     {
@@ -22,15 +28,16 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && dontFollow == false)
         {
             follow = true;
+            onFollow.Invoke();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet" && --life < 1)
         {
             Die();
         }
@@ -41,6 +48,7 @@ public class EnemyController : MonoBehaviour
         if (isDead)
             return ;
 
+        onDie.Invoke();
         isDead = true;
         e.enabled = false;
         var g = GameObject.Instantiate(diePrefab, transform.position, Quaternion.identity);
@@ -58,5 +66,7 @@ public class EnemyController : MonoBehaviour
 
             controller2D.Move(s * Time.fixedDeltaTime, false, false);
         }
+        if (dontFollow)
+            controller2D.Move(0, false, false);
     }
 }
