@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && dontFollow == false)
+        if (other.tag == "Player")
         {
             follow = true;
             onFollow.Invoke();
