@@ -7,6 +7,7 @@
         _Alpha ("Alpha", Float) = 1
         _Distance ("Distance", Float) = 500
         _Start ("Start", Float) = 0
+        _FinalAnim("Final", Float) = 0
         [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
         [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
@@ -74,6 +75,7 @@ fixed4 _Color5;
 float _Alpha;
 float _Distance;
 float _Start;
+float _FinalAnim;
 
 struct appdata_t
 {
@@ -137,7 +139,7 @@ float4 GetPositionColor(float p)
 {
     p += _Start;
     float3 rgb = tex2D(_Gradient, float2(p / _Distance, 0.5));
-    return float4(rgb, 1);
+    return float4(lerp(rgb, tex2D(_Gradient, float2(0, 0.5)), _FinalAnim), 1);
 }
 
 fixed4 SpriteFrag(v2f IN) : SV_Target
